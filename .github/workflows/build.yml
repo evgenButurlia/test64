@@ -19,6 +19,6 @@ jobs:
       - name: Checkout the code
         uses: actions/checkout@v2
       - name: Install packages
-        uses: yarn install
+        run: yarn install
       - name: Build the app
         run: cd android && ./gradlew assembleDebug
