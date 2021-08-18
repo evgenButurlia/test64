@@ -1,7 +1,6 @@
 platform :android do
   lane :release do |options|
     gradle(
-      project_dir: 'android',
       task: "clean"
     )
     increment_version_code(
