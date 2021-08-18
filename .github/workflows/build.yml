@@ -24,10 +24,13 @@ jobs:
           gpg -d --passphrase "${{ secrets.PASSPHRASE }}" --batch release.keystore.asc > android/fastlane/release.keystore
           
       - run: yarn install
-      - run: gem install fastlane
-      - run: | 
-          cd android
-          fastlane android release RELEASE_KEYSTORE_PASSWORD:${{secrets.RELEASE_KEYSTORE_PASSWORD}} RELEASE_KEYSTORE_KEY_PASSWORD:${{secrets.RELEASE_KEYSTORE_KEY_PASSWORD}} RELEASE_KEYSTORE_ALIAS:${{secrets.RELEASE_KEYSTORE_ALIAS}}
+      
+      - run: cd android
+      
+      - uses: maierj/fastlane-action@v2.0.1
+        with:
+          lane: 'release'
+          options: '{ "RELEASE_KEYSTORE_PASSWORD": ":${{secrets.RELEASE_KEYSTORE_PASSWORD}}", "RELEASE_KEYSTORE_KEY_PASSWORD" : "${{secrets.RELEASE_KEYSTORE_KEY_PASSWORD}}", "RELEASE_KEYSTORE_ALIAS" : "${{secrets.RELEASE_KEYSTORE_ALIAS}}" }'
         
       - uses: actions/upload-artifact@v2
         with:
