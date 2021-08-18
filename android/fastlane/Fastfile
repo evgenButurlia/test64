@@ -1,0 +1,30 @@
+platform :android do
+  lane :release do |options|
+    gradle(
+      project_dir: 'android',
+      task: "clean"
+    )
+    increment_version_code(
+      gradle_file_path: "app/build.gradle"
+    )
+    build = get_version_code(
+      gradle_file_path: "app/build.gradle",
+    )
+    version = get_version_name(
+      gradle_file_path: "app/build.gradle",
+      ext_constant_name: "versionName"
+    )
+
+    gradle(
+      task: 'assemble',
+      build_type: 'Release',
+      properties: {
+        "android.injected.signing.store.file" => Dir.pwd + '/release.keystore',
+        "android.injected.signing.store.password" => options[:RELEASE_KEYSTORE_PASSWORD],
+        "android.injected.signing.key.alias" => options[:RELEASE_KEYSTORE_ALIAS],
+        "android.injected.signing.key.password" => options[:RELEASE_KEYSTORE_KEY_PASSWORD],
+      }
+    )
+
+  end
+end
