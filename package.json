@@ -12,7 +12,8 @@
   "dependencies": {
     "react": "17.0.1",
     "react-native": "0.64.1",
-    "react-native-validic-aggregator-fit": "git+ssh://git@github.com:healthimation/validic-bridge.git#v1.8.1"
+    "react-native-validic-aggregator-fit": "git+ssh://git@github.com:healthimation/validic-bridge.git#v1.8.1",
+    "react-native-charts-wrapper": "git+https://github.com/healthimation/react-native-charts-wrapper.git#v0.5.7p5"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
