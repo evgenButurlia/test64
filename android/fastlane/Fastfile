@@ -15,7 +15,7 @@ platform :android do
     )
 
     gradle(
-      task: 'assemble',
+      task: 'app:assemble',
       build_type: 'Release',
       properties: {
         "android.injected.signing.store.file" => Dir.pwd + '/release.keystore',
